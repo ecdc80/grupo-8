@@ -20,7 +20,7 @@ public class v1 extends JFrame implements ActionListener {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JButton btnNewButton;
-	private JTextArea txtrTxs;
+	private JTextArea txts;
 
 	/**
 	 * Launch the application.
@@ -58,7 +58,7 @@ public class v1 extends JFrame implements ActionListener {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel("codigo");
 		lblNewLabel_1.setBounds(10, 46, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
@@ -67,15 +67,14 @@ public class v1 extends JFrame implements ActionListener {
 		this.contentPane.add(this.textField_1);
 		this.textField_1.setColumns(10);
 		
-		this.btnNewButton = new JButton("New button");
+		this.btnNewButton = new JButton("registrar");
 		this.btnNewButton.addActionListener(this);
 		this.btnNewButton.setBounds(278, 74, 89, 23);
 		this.contentPane.add(this.btnNewButton);
 		
-		this.txtrTxs = new JTextArea();
-		this.txtrTxs.setText("txs");
-		this.txtrTxs.setBounds(30, 91, 238, 159);
-		this.contentPane.add(this.txtrTxs);
+		this.txts = new JTextArea();
+		this.txts.setBounds(30, 91, 238, 159);
+		this.contentPane.add(this.txts);
 
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -87,5 +86,6 @@ public class v1 extends JFrame implements ActionListener {
 	String nombre = null ;
 	int cod=0 ;
 	registrar r1 = new registrar(nombre, cod);
+	txts.append("se registro nuevo producto ");
 	}
 }
