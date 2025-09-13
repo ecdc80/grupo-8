@@ -4,21 +4,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import mercancia.ArregloProducto;
+import mercancia.Producto;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 public class v1 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNom;
+	private JTextField txtCod;
 	private JButton btnNewButton;
-	private JTextArea txts;
+	private JTextArea txtS;
+	private JTextField txtCant;
+	private JTextField txtPrecio;
 
 	/**
 	 * Launch the application.
@@ -51,30 +58,44 @@ public class v1 extends JFrame implements ActionListener {
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(81, 8, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNom = new JTextField();
+		txtNom.setBounds(109, 9, 86, 20);
+		contentPane.add(txtNom);
+		txtNom.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Codigo");
 		lblNewLabel_1.setBounds(10, 46, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		this.textField_1 = new JTextField();
-		this.textField_1.setBounds(81, 43, 86, 20);
-		this.contentPane.add(this.textField_1);
-		this.textField_1.setColumns(10);
+		this.txtCod = new JTextField();
+		this.txtCod.setBounds(109, 44, 86, 20);
+		this.contentPane.add(this.txtCod);
+		this.txtCod.setColumns(10);
 		
-		this.btnNewButton = new JButton("Registrar");
+		this.btnNewButton = new JButton("Reportar(Listar)");
 		this.btnNewButton.addActionListener(this);
-		this.btnNewButton.setBounds(278, 95, 89, 23);
+		this.btnNewButton.setBounds(278, 95, 118, 23);
 		this.contentPane.add(this.btnNewButton);
 		
-		this.txts = new JTextArea();
-		this.txts.setBounds(30, 94, 238, 159);
-		this.contentPane.add(this.txts);
+		this.txtS = new JTextArea();
+		this.txtS.setBounds(30, 94, 238, 159);
+		this.contentPane.add(this.txtS);
+		
+		
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					
+					Producto es = inv.Buscar(LeerCodigo());
+					if(es != null) {
+
+						txtS.append("Código\tNombre\tNota 1\tNota 2\tPromedio");
+						txtS.append("\n"+ es.getCod() + "\t" + es.getNom()+ "\t" + es.getPrecio()+ "\t" + es.getStock());
+					}
+					
+				}
+		});
 		btnAdicionar.setBounds(278, 128, 89, 23);
 		contentPane.add(btnAdicionar);
 		
@@ -85,7 +106,40 @@ public class v1 extends JFrame implements ActionListener {
 		});
 		btnBuscar.setBounds(278, 161, 89, 23);
 		contentPane.add(btnBuscar);
+		
+		JLabel sad = new JLabel("Cantidad");
+		sad.setBounds(223, 12, 45, 13);
+		contentPane.add(sad);
+		
+		JLabel asd = new JLabel("Precio");
+		asd.setBounds(223, 47, 45, 13);
+		contentPane.add(asd);
+		
+		txtCant = new JTextField();
+		txtCant.setColumns(10);
+		txtCant.setBounds(300, 9, 86, 20);
+		contentPane.add(txtCant);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setColumns(10);
+		txtPrecio.setBounds(300, 44, 86, 20);
+		contentPane.add(txtPrecio);
 
+	}
+	
+	
+	ArregloProducto inv = new ArregloProducto();
+	int LeerCodigo() {
+		return Integer.parseInt(txtCod.getText());
+	}
+	String LeerNombre() {
+		return txtNom.getText();
+	}
+	double LeerPrecio() {
+		return Double.parseDouble(txtPrecio.getText());
+	}
+	double LeerStock() {
+		return Double.parseDouble(txtCant.getText());
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btnNewButton) {
@@ -93,6 +147,18 @@ public class v1 extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
-	txts.append("se registro nuevo producto ");
+		
+		Producto prod= new Producto(txtNom.getText(),Integer.parseInt(txtCod.getText()));
+		
+		txtS.append(prod.getNom()+ "\t" + prod.getCod());
+	}
+	
+	void Listado() {
+		txtS.setText("");
+		txtS.append("Codigo\tNombre\tNota 1\tNota 2\tPromedio");
+		for (int i  = 0 ; i< inv.Tamaño(); i++) {
+			txtS.append("\n"+inv.Obtener(i).getCod()+"\t"+ inv.Obtener(i).getNom()+"\t"+ 
+		inv.Obtener(i).getPrecio()+"\t"+ inv.Obtener(i).getStock()+ "\n");
+		}
 	}
 }
