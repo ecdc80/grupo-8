@@ -74,17 +74,29 @@ public class v1 extends JFrame implements ActionListener {
 		
 		this.btnNewButton = new JButton("Reportar(Listar)");
 		this.btnNewButton.addActionListener(this);
-		this.btnNewButton.setBounds(278, 95, 118, 23);
+		this.btnNewButton.setBounds(258, 95, 138, 23);
 		this.contentPane.add(this.btnNewButton);
 		
 		this.txtS = new JTextArea();
-		this.txtS.setBounds(30, 94, 238, 159);
+		this.txtS.setBounds(10, 94, 238, 159);
 		this.contentPane.add(this.txtS);
 		
 		
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Producto tmp = new Producto(LeerNombre(), LeerCodigo());
+				inv.Adicionar(tmp);
+			}
+		});
+
+		btnAdicionar.setBounds(258, 128, 138, 23);
+		contentPane.add(btnAdicionar);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
 					Producto es = inv.Buscar(LeerCodigo());
@@ -93,18 +105,9 @@ public class v1 extends JFrame implements ActionListener {
 						txtS.append("Código\tNombre\tNota 1\tNota 2\tPromedio");
 						txtS.append("\n"+ es.getCod() + "\t" + es.getNom()+ "\t" + es.getPrecio()+ "\t" + es.getStock());
 					}
-					
-				}
-		});
-		btnAdicionar.setBounds(278, 128, 89, 23);
-		contentPane.add(btnAdicionar);
-		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnBuscar.setBounds(278, 161, 89, 23);
+		btnBuscar.setBounds(258, 161, 138, 23);
 		contentPane.add(btnBuscar);
 		
 		JLabel sad = new JLabel("Cantidad");
@@ -147,10 +150,7 @@ public class v1 extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
-		
-		Producto prod= new Producto(txtNom.getText(),Integer.parseInt(txtCod.getText()));
-		
-		txtS.append(prod.getNom()+ "\t" + prod.getCod());
+		Listado();
 	}
 	
 	void Listado() {
@@ -158,7 +158,7 @@ public class v1 extends JFrame implements ActionListener {
 		txtS.append("Codigo\tNombre\tNota 1\tNota 2\tPromedio");
 		for (int i  = 0 ; i< inv.Tamaño(); i++) {
 			txtS.append("\n"+inv.Obtener(i).getCod()+"\t"+ inv.Obtener(i).getNom()+"\t"+ 
-		inv.Obtener(i).getPrecio()+"\t"+ inv.Obtener(i).getStock()+ "\n");
+					inv.Obtener(i).getPrecio()+"\t"+ inv.Obtener(i).getStock());
 		}
 	}
 }
