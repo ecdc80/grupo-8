@@ -96,18 +96,7 @@ public class v1 extends JFrame implements ActionListener {
 		contentPane.add(btnAdicionar);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					
-					Producto es = inv.Buscar(LeerCodigo());
-					if(es != null) {
-
-						txtS.append("Código\tNombre\tNota 1\tNota 2\tPromedio");
-						txtS.append("\n"+ es.getCod() + "\t" + es.getNom()+ "\t" + es.getPrecio()+ "\t" + es.getStock());
-					}
-					else JOptionPane.showMessageDialog(v1.this," Hola");
-			}
-		});
+	
 		btnBuscar.setBounds(258, 161, 138, 23);
 		contentPane.add(btnBuscar);
 		
