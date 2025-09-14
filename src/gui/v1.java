@@ -128,6 +128,17 @@ public class v1 extends JFrame implements ActionListener {
 		txtPrecio.setColumns(10);
 		txtPrecio.setBounds(300, 44, 86, 20);
 		contentPane.add(txtPrecio);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Producto es=inv.Buscar(LeerCodigo());
+				if(es != null) inv.Eliminar(es);
+				else JOptionPane.showMessageDialog(v1.this, "No existe código");
+			}
+		});
+		btnEliminar.setBounds(258, 195, 138, 23);
+		contentPane.add(btnEliminar);
 
 	}
 	
