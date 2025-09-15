@@ -130,7 +130,7 @@ public class v1 extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				Producto es=inv.Buscar(LeerCodigo());
 				if(es != null) inv.Eliminar(es);
-				else JOptionPane.showMessageDialog(v1.this, "No existe código");
+				else JOptionPane.showMessageDialog(v1.this, "No se registro producto ");
 			}
 		});
 		contentPane.add(btnEliminar);
