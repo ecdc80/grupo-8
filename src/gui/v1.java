@@ -84,7 +84,7 @@ public class v1 extends JFrame implements ActionListener {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Producto tmp = new Producto(LeerNombre(), LeerCodigo());
+				Producto tmp = new Producto(LeerNombre(), LeerCodigo(),LeerPrecio() ,LeerStock());
 				inv.Adicionar(tmp);
 			}
 		});
@@ -175,12 +175,13 @@ public class v1 extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		txtS.setText("");
 		Listado();
+		txtS.append("\nCantidad de productos " +inv.Tamaño());
 	}
-	
 	void Listado() {
 		txtS.setText("");
-		txtS.append("Codigo\tNombre\tNota 1\tNota 2\tPromedio");
+		txtS.append("Codigo\tNombre\tPrecio\tstock");
 		for (int i  = 0 ; i< inv.Tamaño(); i++) {
 			txtS.append("\n"+inv.Obtener(i).getCod()+"\t"+ inv.Obtener(i).getNom()+"\t"+ 
 					inv.Obtener(i).getPrecio()+"\t"+ inv.Obtener(i).getStock());
