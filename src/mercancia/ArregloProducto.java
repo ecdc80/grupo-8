@@ -2,6 +2,7 @@ package mercancia;
 
 import java.util.ArrayList;
 
+
 public class ArregloProducto {
 	private ArrayList<Producto>producto;
 	
@@ -33,5 +34,4 @@ public class ArregloProducto {
 	public void Eliminar(Producto x ) {
 		producto.remove(x);
 	}
-
 }

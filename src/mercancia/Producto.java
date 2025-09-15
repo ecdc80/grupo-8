@@ -61,7 +61,4 @@ public class Producto {
 	public void SalidaStock(double cantidad ) {
 		this.stock -= cantidad;
 	}
-	
-	
-
 }
