@@ -3,24 +3,26 @@ package mercancia;
 import java.util.ArrayList;
 
 
-public class ArregloProducto {
-	private ArrayList<Producto>producto;
+
+public class ArregloProducto{
+
+	private ArrayList<Producto>inventario;
 	
 	public ArregloProducto() {
-		producto = new ArrayList<Producto>();
+		this.inventario = new ArrayList<Producto>();
 		
 	}
 	
 	public void Adicionar( Producto x ) {
-		producto.add(x);
+		inventario.add(x);
 	}
 	
 	public int Tamaño() {
-		return producto.size();
+		return inventario.size();
 	}
 	
 	public Producto Obtener(int x) {
-		return producto.get(x);
+		return inventario.get(x);
 	}
 	
 	
@@ -31,7 +33,14 @@ public class ArregloProducto {
 		return null;
 	}
 	
+	public Boolean BuscarCodigo (int cod) {
+		for(int i = 0; i <Tamaño(); i++) {
+			if(Obtener(i).getCod()== cod) return true;
+		}
+		return false;
+	}
+	
 	public void Eliminar(Producto x ) {
-		producto.remove(x);
+		inventario.remove(x);
 	}
 }
