@@ -1,7 +1,9 @@
 package mercancia;
 
 import java.util.ArrayList;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.MessageFormat;
 
 
 public class ArregloProducto{
@@ -27,17 +29,21 @@ public class ArregloProducto{
 	
 	
 	public Producto Buscar (int cod) {
+		
 		for(int i = 0; i <Tamaño(); i++) {
 			if(Obtener(i).getCod()== cod) return Obtener(i);
 		}
 		return null;
 	}
 	
-	public Boolean BuscarCodigo (int cod) {
+	public Producto Buscar (String nom) {
+		String message = MessageFormat.format("{0}", nom);
+		Pattern pattern = Pattern.compile(message, Pattern.CASE_INSENSITIVE);
 		for(int i = 0; i <Tamaño(); i++) {
-			if(Obtener(i).getCod()== cod) return true;
+			Matcher matcher = pattern.matcher(Obtener(i).getNom());
+			if(matcher.find()) return Obtener(i);
 		}
-		return false;
+		return null;
 	}
 	
 	public void Eliminar(Producto x ) {

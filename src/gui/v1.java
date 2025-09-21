@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -59,7 +61,7 @@ public class v1 extends JFrame implements ActionListener {
 		contentPane.add(lblNewLabel);
 		
 		txtNom = new JTextField();
-		txtNom.setBounds(109, 9, 86, 20);
+		txtNom.setBounds(77, 9, 86, 20);
 		contentPane.add(txtNom);
 		txtNom.setColumns(10);
 		
@@ -68,7 +70,7 @@ public class v1 extends JFrame implements ActionListener {
 		contentPane.add(lblNewLabel_1);
 		
 		this.txtCod = new JTextField();
-		txtCod.setBounds(109, 44, 86, 20);
+		txtCod.setBounds(77, 39, 86, 20);
 		this.contentPane.add(this.txtCod);
 		this.txtCod.setColumns(10);
 		
@@ -78,7 +80,8 @@ public class v1 extends JFrame implements ActionListener {
 		btn_Adicionar.setBounds(93, 88, 85, 23);
 		btn_Adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+					String nombre = LeerNombre();
+					JOptionPane.showMessageDialog(v1.this, "${nombre}");
 					Producto tmp = new Producto(LeerNombre(), LeerCodigo(),LeerPrecio() ,LeerStock());
 					inv.Adicionar(tmp);
 
@@ -90,33 +93,34 @@ public class v1 extends JFrame implements ActionListener {
 		btn_Buscar.setBounds(182, 88, 86, 23);
 		btn_Buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
-					Producto es = inv.Buscar(LeerCodigo());
-					if(es != null) {
 
-						txtS.append("Código\tNombre\tNota 1\tNota 2\tPromedio");
-						txtS.append("\n"+ es.getCod() + "\t" + es.getNom()+ "\t" + es.getPrecio()+ "\t" + es.getStock());
-					}
-					else JOptionPane.showMessageDialog(v1.this," Hola");
+						Producto es = inv.Buscar(LeerNombre());
+						if(es != null) {
+							txtS.setText("");
+							txtS.append("Código\tNombre\tPrecio \tStock");
+							txtS.append("\n"+ es.getCod() + "\t" + es.getNom()+ "\t" + es.getPrecio()+ "\t" + es.getStock());
+						}
+						else JOptionPane.showMessageDialog(v1.this," Hola");
+					
 			}
 		});
 		contentPane.add(btn_Buscar);
 		
 		JLabel sad = new JLabel("Cantidad");
-		sad.setBounds(223, 12, 45, 13);
+		sad.setBounds(182, 12, 45, 13);
 		contentPane.add(sad);
 		
 		JLabel asd = new JLabel("Precio");
-		asd.setBounds(223, 47, 45, 13);
+		asd.setBounds(182, 47, 45, 13);
 		contentPane.add(asd);
 		
 		txtCant = new JTextField();
-		txtCant.setBounds(300, 9, 86, 20);
+		txtCant.setBounds(237, 9, 86, 20);
 		txtCant.setColumns(10);
 		contentPane.add(txtCant);
 		
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(300, 44, 86, 20);
+		txtPrecio.setBounds(237, 44, 86, 20);
 		txtPrecio.setColumns(10);
 		contentPane.add(txtPrecio);
 		
@@ -169,6 +173,16 @@ public class v1 extends JFrame implements ActionListener {
 		});
 		btn_Reportar.setBounds(10, 89, 85, 21);
 		contentPane.add(btn_Reportar);
+		
+		JButton btn_Cantidad = new JButton("Modificar Cantidad");
+		btn_Cantidad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Stock st = new Stock();
+				st.setVisible(true);
+			}
+		});
+		btn_Cantidad.setBounds(345, 8, 117, 21);
+		contentPane.add(btn_Cantidad);
 	}
 	
 	
