@@ -36,15 +36,7 @@ public class ArregloProducto{
 		return null;
 	}
 	
-	public Producto Buscar (String nom) {
-		String message = MessageFormat.format("{0}", nom);
-		Pattern pattern = Pattern.compile(message, Pattern.CASE_INSENSITIVE);
-		for(int i = 0; i <Tamaño(); i++) {
-			Matcher matcher = pattern.matcher(Obtener(i).getNom());
-			if(matcher.find()) return Obtener(i);
-		}
-		return null;
-	}
+
 	
 	public void Eliminar(Producto x ) {
 		inventario.remove(x);
