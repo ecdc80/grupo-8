@@ -18,6 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class v1 extends JFrame implements ActionListener {
 
@@ -51,6 +54,18 @@ public class v1 extends JFrame implements ActionListener {
 	public v1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 490, 326);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Productos");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_1 = new JMenu("Inventario");
+		menuBar.add(mnNewMenu_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,7 +102,7 @@ public class v1 extends JFrame implements ActionListener {
 					inv.Adicionar(tmp);
 
 				}catch(Exception e2) {
-					JOptionPane.showMessageDialog(v1.this, "Ingrese datos por favor");
+					
 				}
 
 		}
