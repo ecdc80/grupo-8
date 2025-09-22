@@ -81,6 +81,7 @@ public class v1 extends JFrame implements ActionListener {
 		btn_Adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					try {
+						
 						txtS.setText("");
 						Listado();
 						txtS.append("\nCantidad de productos " +inv.Tamaño());
