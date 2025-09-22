@@ -161,6 +161,7 @@ public class v1 extends JFrame implements ActionListener {
 		        }
 			}
 		});
+			
 		btn_Modificar.setBounds(345, 88, 89, 23);
 		contentPane.add(btn_Modificar);
 		
