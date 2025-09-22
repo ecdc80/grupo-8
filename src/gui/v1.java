@@ -80,7 +80,21 @@ public class v1 extends JFrame implements ActionListener {
 		btn_Adicionar.setBounds(93, 88, 85, 23);
 		btn_Adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 					
+					txtS.setText("");
+					Listado();
+					txtS.append("\nCantidad de productos " +inv.Tamaño());
+					String nombre = LeerNombre();
+					Producto tmp = new Producto(LeerNombre(), LeerCodigo(),LeerPrecio() ,LeerStock());
+					inv.Adicionar(tmp);
+
+				}catch(Exception e2) {
+					JOptionPane.showMessageDialog(v1.this, "Ingrese datos por favor");
+				}
+
+		}
+	});
 		contentPane.add(btn_Adicionar);
 		
 		JButton btn_Buscar = new JButton("Buscar");
