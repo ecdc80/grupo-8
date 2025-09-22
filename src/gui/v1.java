@@ -82,10 +82,7 @@ public class v1 extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					
-					txtS.setText("");
-					Listado();
 					txtS.append("\nCantidad de productos " +inv.Tamaño());
-					String nombre = LeerNombre();
 					Producto tmp = new Producto(LeerNombre(), LeerCodigo(),LeerPrecio() ,LeerStock());
 					inv.Adicionar(tmp);
 
