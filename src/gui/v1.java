@@ -145,7 +145,22 @@ public class v1 extends JFrame implements ActionListener {
 		JButton btn_Modificar = new JButton("Modificar");
 		btn_Modificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				txtS.setText("");
+		        try {
+		            Producto p = inv.Buscar(LeerCodigo());
+		            if (p != null) {
+		                p.setNom(LeerNombre());
+		                p.setPrecio(LeerPrecio());
+		                p.setStock(LeerStock());
+		                JOptionPane.showMessageDialog(v1.this, "Producto modificado");
+		                Listado();
+		            } else
+		                JOptionPane.showMessageDialog(v1.this, "No existe código");
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(v1.this, "Ingrese código y precio válidos");
+		        }
+			}
+		});
 			
 		btn_Modificar.setBounds(345, 88, 89, 23);
 		contentPane.add(btn_Modificar);
