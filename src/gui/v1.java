@@ -151,6 +151,7 @@ public class v1 extends JFrame implements ActionListener {
 		            if (p != null) {
 		                p.setNom(LeerNombre());
 		                p.setPrecio(LeerPrecio());
+		                p.setStock(LeerStock());
 		                JOptionPane.showMessageDialog(v1.this, "Producto modificado");
 		                Listado();
 		            } else
@@ -173,16 +174,6 @@ public class v1 extends JFrame implements ActionListener {
 		});
 		btn_Reportar.setBounds(10, 89, 85, 21);
 		contentPane.add(btn_Reportar);
-		
-		JButton btn_Cantidad = new JButton("Modificar Cantidad");
-		btn_Cantidad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Stock st = new Stock();
-				st.setVisible(true);
-			}
-		});
-		btn_Cantidad.setBounds(345, 8, 117, 21);
-		contentPane.add(btn_Cantidad);
 	}
 	
 	
