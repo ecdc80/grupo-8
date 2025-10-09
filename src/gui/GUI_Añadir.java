@@ -21,7 +21,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-public class v1 extends JFrame implements ActionListener {
+public class GUI_Añadir extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -37,7 +37,7 @@ public class v1 extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					v1 frame = new v1();
+					GUI_Añadir frame = new GUI_Añadir();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class v1 extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public v1() {
+	public GUI_Añadir() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 490, 326);
 		
@@ -70,7 +70,7 @@ public class v1 extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Producto ");
+		JLabel lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		contentPane.add(lblNewLabel);
 		
@@ -90,8 +90,8 @@ public class v1 extends JFrame implements ActionListener {
 		
 		
 		
-		JButton btn_Adicionar = new JButton("Adicionar");
-		btn_Adicionar.setBounds(93, 88, 85, 23);
+		JButton btn_Adicionar = new JButton("Añadir");
+		btn_Adicionar.setBounds(351, 23, 85, 23);
 		btn_Adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -107,23 +107,6 @@ public class v1 extends JFrame implements ActionListener {
 		}
 	});
 		contentPane.add(btn_Adicionar);
-		
-		JButton btn_Buscar = new JButton("Buscar");
-		btn_Buscar.setBounds(182, 88, 86, 23);
-		btn_Buscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-						Producto es = inv.Buscar(LeerNombre());
-						if(es != null) {
-							txtS.setText("");
-							txtS.append("Código\tNombre\tPrecio \tStock");
-							txtS.append("\n"+ es.getCod() + "\t" + es.getNom()+ "\t" + es.getPrecio()+ "\t" + es.getStock());
-						}
-						else JOptionPane.showMessageDialog(v1.this," Hola");
-					
-			}
-		});
-		contentPane.add(btn_Buscar);
 		
 		JLabel sad = new JLabel("Cantidad");
 		sad.setBounds(182, 12, 45, 13);
@@ -143,25 +126,15 @@ public class v1 extends JFrame implements ActionListener {
 		txtPrecio.setColumns(10);
 		contentPane.add(txtPrecio);
 		
-		JButton btn_Eliminar = new JButton("Eliminar");
-		btn_Eliminar.setBounds(259, 88, 91, 23);
-		btn_Eliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Producto es=inv.Buscar(LeerCodigo());
-				if(es != null) inv.Eliminar(es);
-				else JOptionPane.showMessageDialog(v1.this, "No se registro producto ");
-			}
-		});
-		contentPane.add(btn_Eliminar);
-		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 133, 416, 120);
+		scrollPane.setBounds(20, 121, 416, 120);
 		contentPane.add(scrollPane);
 		
 		txtS = new JTextArea();
 		scrollPane.setViewportView(txtS);
 		
 		JButton btn_Modificar = new JButton("Modificar");
+		btn_Modificar.setEnabled(false);
 		btn_Modificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtS.setText("");
@@ -171,29 +144,18 @@ public class v1 extends JFrame implements ActionListener {
 		                p.setNom(LeerNombre());
 		                p.setPrecio(LeerPrecio());
 		                p.setStock(LeerStock());
-		                JOptionPane.showMessageDialog(v1.this, "Producto modificado");
+		                JOptionPane.showMessageDialog(GUI_Añadir.this, "Producto modificado");
 		                Listado();
 		            } else
-		                JOptionPane.showMessageDialog(v1.this, "No existe código");
+		                JOptionPane.showMessageDialog(GUI_Añadir.this, "No existe código");
 		        } catch (NumberFormatException ex) {
-		            JOptionPane.showMessageDialog(v1.this, "Ingrese código y precio válidos");
+		            JOptionPane.showMessageDialog(GUI_Añadir.this, "Ingrese código y precio válidos");
 		        }
 			}
 		});
 			
-		btn_Modificar.setBounds(345, 88, 89, 23);
+		btn_Modificar.setBounds(347, 55, 89, 23);
 		contentPane.add(btn_Modificar);
-		
-		JButton btn_Reportar = new JButton("Reportar");
-		btn_Reportar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtS.setText("");
-				Listado();
-				txtS.append("\nCantidad de productos " +inv.Tamaño());
-			}
-		});
-		btn_Reportar.setBounds(10, 89, 85, 21);
-		contentPane.add(btn_Reportar);
 	}
 	
 	

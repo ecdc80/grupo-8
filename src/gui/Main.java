@@ -70,8 +70,17 @@ public class Main extends JFrame {
 		JMenu mnNewMenu = new JMenu("Productos");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Añadir / Modificar");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Añadir");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI_Añadir gp = new GUI_Añadir();
+				gp.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar/Eliminar");
+		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Eliminar");
 		mnNewMenu.add(mntmNewMenuItem_2);
@@ -162,15 +171,16 @@ public class Main extends JFrame {
 		C_Item.setBounds(215, 195, 85, 21);
 		contentPane.add(C_Item);
 		
-		
-		
-		
+		//Crea un listado inicial
+		Listado(inven);
 	}
 	void Header() {
 		txtS.setText("");
 		txtS.append("Codigo\tNombre\tPrecio\tstock");
 		
 	}
+	
+	//Only for test
 	String CurrentItem() {
 		return  find_ComboBox.getSelectedItem().toString();
 	}
@@ -180,8 +190,7 @@ public class Main extends JFrame {
 		for (int i  = 0 ; i< inv.Tamaño(); i++) {
 			txtS.append("\n"+inv.Obtener(i).getCod()+"\t"+ inv.Obtener(i).getNom()+"\t"+inv.Obtener(i).getPrecio()+"\t"+ inv.Obtener(i).getStock());
 		}
-		txtS.append("\n \n \nCantidad de productos " +inv.Tamaño());
-		txtS.append("\n" + CurrentItem() );
+		txtS.append("\n \nCantidad de productos " +inv.Tamaño());
 	}
 	
 	int LeerCodigo() {
@@ -190,6 +199,4 @@ public class Main extends JFrame {
 	String LeerNombre() {
 		return txtCod.getText();
 	}
-	private ArrayList<Producto>inicial = new ArrayList<Producto>();
-	
 }

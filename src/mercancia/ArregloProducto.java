@@ -16,6 +16,9 @@ public class ArregloProducto{
 		inventario.add(new Producto("Laptop SK", 1000002, 25.7, 1.5));
 		inventario.add(new Producto("Laptop Logica", 1000003, 41.4, 22));
 		inventario.add(new Producto("Pantalla USA", 1000004, 65.9, 200));
+		inventario.add(new Producto("Pantalla A", 1000004, 65.9, 200));
+		inventario.add(new Producto("Pantalla B", 1000004, 65.9, 200));
+		inventario.add(new Producto("Pantalla C", 1000004, 65.9, 200));
 		
 	}
 	public ArregloProducto() {
@@ -58,7 +61,7 @@ public class ArregloProducto{
 		ArregloProducto Coincidencias_P = new ArregloProducto();
 		
 		String searchTerm = nom;
-		String regex = "\\b" + Pattern.quote(searchTerm) + "\\b";
+		String regex = "\\b\\w*" + Pattern.quote(searchTerm) + "\\w*\\b";
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		
 		for(int i = 0; i < reference.Tamaño(); i++) {
