@@ -71,7 +71,7 @@ public class Producto {
 		this.stock += cantidad;
 	}
 	
-	public void SalidaStock(double cantidad ) {
+	public void ReducirStock(double cantidad ) {
 		this.stock -= cantidad;
 	}
 }
